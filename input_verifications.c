@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_verifications.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:32:24 by joana             #+#    #+#             */
-/*   Updated: 2023/11/28 00:03:13 by joana            ###   ########.fr       */
+/*   Updated: 2023/11/28 15:42:30 by joanda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_failure(void)
 
 int	ft_is_int(int argc, char **argv)
 {
-	int	i;
+	int			i;
 	static int	j;
 
 	i = 0;
@@ -29,7 +29,7 @@ int	ft_is_int(int argc, char **argv)
 		if (!argv[i][0])
 			return (0);
 		else if ((argv[i][j] == '-' || argv[i][j] == '+')
-			&& ft_isdigit(argv[i][j + 1]) == 0)
+				&& ft_isdigit(argv[i][j + 1]) == 0)
 			return (0);
 		else
 		{
@@ -55,31 +55,27 @@ int	ft_intcmp(int i1, int i2)
 		return (0);
 }
 
-void	ft_is_dup(t_list_int **stack)
+void	ft_is_dup(t_list_int **stack, int argc, char **argv)
 {
-	t_list_int	*stack_copy1;
-	t_list_int	*stack_copy2;
-
-	stack_copy1 = *stack;
-	stack_copy2 = (*stack)->next;
-	while (stack_copy1 && stack_copy2)
+	while ((*stack) != NULL && (*stack)->next != NULL)
 	{
-		if (ft_intcmp(stack_copy1->content, stack_copy2->content) == 1)
+		if (ft_intcmp((*stack)->content, (*stack)->next->content) == 1)
 			ft_failure();
-		else if (!(stack_copy2->next))
+		else if ((*stack)->next->next == NULL)
 		{
-			stack_copy2 = stack_copy1->next->next;
-			stack_copy1 = stack_copy1->next;
+			(*stack)->next = (*stack)->next->next;
+			(*stack) = (*stack)->next;
 		}
 		else
-			stack_copy2 = stack_copy2->next;
+			(*stack)->next = (*stack)->next->next;
 	}
+	ft_stack_construct(argc, argv, stack);
 }
 
 int	is_ordered(t_list_int **stack)
 {
-	while ((*stack)->next != NULL &&
-		(*stack)->content < (*stack)->next->content)
+	while ((*stack)->next != NULL
+		&& (*stack)->content < (*stack)->next->content)
 			*stack = (*stack)->next;
 	if ((*stack)->next == NULL)
 		return (0);

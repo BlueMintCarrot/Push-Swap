@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joana <joana@student.42.fr>                +#+  +:+       +#+         #
+#    By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 16:55:22 by joanda-s          #+#    #+#              #
-#    Updated: 2023/11/06 01:49:33 by joana            ###   ########.fr        #
+#    Updated: 2023/11/28 21:18:12 by joanda-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen
 		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c \
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_lstsize_int.c \
 		ft_lstnew_int.c ft_lstadd_back_int.c ft_lstlast_int.c ft_lstadd_front_int.c \
-		ft_lstdelone_int.c
+		ft_lstdelone_int.c ft_lstiter_int.c
 
 SRC_B = 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \

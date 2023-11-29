@@ -3,38 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:18:05 by joana             #+#    #+#             */
-/*   Updated: 2023/11/27 22:58:00 by joana            ###   ########.fr       */
+/*   Updated: 2023/11/28 22:04:46 by joanda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_biggest(t_list_int **stack)
-{
-	t_list_int	*temp;
-	t_list_int	*temp2;
-	int			m;
-
-	m = 1;
-	temp = (*stack);
-	temp2 = (*stack)->next;
-	while (temp2)
-	{
-		if (temp->content < temp2->content)
-			temp = temp2;
-		temp2 = temp2->next;
-	}
-	temp2 = (*stack);
-	while (temp2->content != temp->content)
-	{
-		m++;
-		temp2 = temp2->next;
-	}
-	return (m);
-}
+//int	find_biggest(t_list_int **stack)
+//{
+//	t_list_int	*temp;
+//	int			m;
+//	int			acbup;
+//	int 		*avbup;
+//
+//	acbup = ft_lstiter_int(*stack);
+//	avbup = stack_backup(stack);
+//	m = 1;
+//	while (*stack)
+//	{
+//		temp = (*stack)->next;
+//		while ((*stack)->content > (*stack)->next->content
+//			&& (*stack)->next->next != NULL)
+//			(*stack)->next = (*stack)->next->next;
+//		if ((*stack)->content < (*stack)->next->content)
+//		{
+//			m++;
+//			*stack = temp;
+//		}
+//		else
+//			break ;
+//	}
+//	stack = NULL;
+//	ft_stack_construct_int(acbup, avbup, stack);
+//	return (m);
+//}
 
 void	find_what_to_do_biggest(t_list_int **stack_a, t_list_int **stack_b)
 {
@@ -138,28 +143,28 @@ void	find_what_to_do_stack_b(t_list_int **stack)
 
 /*int	main(void)
 {
-	int	i;
-	int	lst_size;
+	//int	i;
+	//int	lst_size;
 	t_list_int *full_list = NULL; // Initialize full_list with NULL
 	t_list_int *lst1;
 	t_list_int *lst2;
 	t_list_int *lst3;
 	t_list_int *lst4;
 	t_list_int *lst5;
-	t_list_int *lst6;
-	t_list_int *lst7;
-	t_list_int *lst8;
-	t_list_int *lst9;
+	//t_list_int *lst6;
+	//t_list_int *lst7;
+	//t_list_int *lst8;
+	//t_list_int *lst9;
 	int content1 = 8;
 	int content2 = 6;
 	int content3 = 9;
 	int content4 = 20;
 	int content5 = 7;
-	int content6 = 15;
-	int content7 = 10;
-	int content8 = 6;
-	int content9 = 4;
-	t_list_int *full_list2 = NULL; // Initialize full_list with NULL
+	//int content6 = 15;
+	//int content7 = 10;
+	//int content8 = 6;
+	//int content9 = 4;
+	//t_list_int *full_list2 = NULL; // Initialize full_list with NULL
 	// t_list_int *lst5;
 	// t_list_int *lst6;
 	// t_list_int *lst7;
@@ -174,10 +179,10 @@ void	find_what_to_do_stack_b(t_list_int **stack)
 	lst3 = ft_lstnew_int(content3);
 	lst4 = ft_lstnew_int(content4);
 	lst5 = ft_lstnew_int(content5);
-	lst6 = ft_lstnew_int(content6);
-	lst7 = ft_lstnew_int(content7);
-	lst8 = ft_lstnew_int(content8);
-	lst9 = ft_lstnew_int(content9);
+	//lst6 = ft_lstnew_int(content6);
+	//lst7 = ft_lstnew_int(content7);
+	//lst8 = ft_lstnew_int(content8);
+	//lst9 = ft_lstnew_int(content9);
 	// lst6 = ft_lstnew_int(content6);
 	// lst7 = ft_lstnew_int(content7);
 	// lst8 = ft_lstnew_int(content8);
@@ -189,10 +194,10 @@ void	find_what_to_do_stack_b(t_list_int **stack)
 	ft_lstadd_back_int(&full_list, lst3);
 	ft_lstadd_back_int(&full_list, lst4);
 	ft_lstadd_back_int(&full_list, lst5);
-	ft_lstadd_back_int(&full_list, lst6);
-	ft_lstadd_back_int(&full_list, lst7);
-	ft_lstadd_back_int(&full_list, lst8);
-	ft_lstadd_back_int(&full_list, lst9);
+	//ft_lstadd_back_int(&full_list, lst6);
+	//ft_lstadd_back_int(&full_list, lst7);
+	//ft_lstadd_back_int(&full_list, lst8);
+	//ft_lstadd_back_int(&full_list, lst9);
 	// ft_lstadd_back_int(&full_list2, lst5);
 	// ft_lstadd_back_int(&full_list2, lst6);
 	// ft_lstadd_back_int(&full_list2, lst7);
@@ -205,30 +210,37 @@ void	find_what_to_do_stack_b(t_list_int **stack)
 		printf("%d\n", current->content);
 		current = current->next;
 	}
-
 	//while (!sorted_three(&full_list))
-	//find_biggest(&full_list);
-	//printf("%d\n", find_biggest(&full_list));
+	find_biggest(&full_list);
+	printf("%d\n", find_biggest(&full_list));
 
 	// printf("After Rotate:\n");
-	//
-	find_what_to_do(&full_list, &full_list2);
-
-	printf("Full List 1:\n");
-	current = full_list;
-	while (current != NULL)
-	{
-		printf("%d\n", current->content);
-		current = current->next;
-	}
-	printf("Full List 2:\n");
-	t_list_int *current2 = full_list2;
-	current2 = full_list2;
-	while (current2 != NULL)
-	{
-		printf("%d\n", current2->content);
-		current2 = current2->next;
-	}
+	printf("\n");
+	//int *contents;
+	//contents = stack_backup(&full_list);
+	//printf("%d\n", contents[0]);	
+	//printf("%d\n", contents[1]);
+	//printf("%d\n", contents[2]);	
+	//printf("%d\n", contents[3]);	
+	//printf("%d\n", contents[4]);
+	//int acbup;
+	//acbup = ft_lstiter_int(full_list);
+	//printf("%d\n", acbup);	
+	// printf("Full List 1:\n");
+	// current = full_list;
+	// while (current != NULL)
+	// {
+	// 	printf("%d\n", current->content);
+	// 	current = current->next;
+	// }
+	//printf("Full List 2:\n");
+	//t_list_int *current2 = full_list2;
+	//current2 = full_list2;
+	//while (current2 != NULL)
+	//{
+	//	printf("%d\n", current2->content);
+	//	current2 = current2->next;
+	//}
 	//
 	// ft_rev_rotate(&full_list);
 	//

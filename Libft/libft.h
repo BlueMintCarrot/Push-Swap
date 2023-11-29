@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:32:24 by joanda-s          #+#    #+#             */
-/*   Updated: 2023/11/06 01:47:48 by joana            ###   ########.fr       */
+/*   Updated: 2023/11/28 21:26:21 by joanda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
+int					ft_lstiter_int(t_list_int *lst);
 int					ft_lstsize(t_list *lst);
 int					ft_lstsize_int(t_list_int *lst);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);

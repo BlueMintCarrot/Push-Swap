@@ -27,9 +27,9 @@ t_list_int	*iter_list_n_times(t_list_int *stack, int n)
 
 int	ft_rotate(t_list_int **stack)
 {
-	int		temp;
-	int		i;
-	int		n;
+	int	temp;
+	int	i;
+	int	n;
 
 	i = 1;
 	n = ft_lstsize_int(*stack);
