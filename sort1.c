@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:35:21 by joana             #+#    #+#             */
-/*   Updated: 2023/11/28 15:00:17 by joanda-s         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:29:42 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	sort_three(t_list_int **stack)
 	}
 	else if (((*stack)->content > (*stack)->next->content)
 		&& ((*stack)->content < (*stack)->next->next->content))
-		ft_swap(stack);
+		swap_a(stack);
 	else
-		ft_rotate(stack);
+		rotate_a(stack);
 }
 
 void	bread_and_fred(t_list_int **stack_a, t_list_int **stack_b)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:41 by joana             #+#    #+#             */
-/*   Updated: 2023/11/28 21:10:24 by joanda-s         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:18:40 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 int			find_biggest(t_list_int **stack);
-int			find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b);
+int			find_smallest_until_big(t_list_int **stack_a);
 int			ft_intcmp(int i1, int i2);
 int			ft_is_int(int argc, char **argv);
 int			ft_rotate(t_list_int **stack);
@@ -36,11 +36,11 @@ t_list_int	*iter_list_n_times(t_list_int *stack, int n);
 void		bread_and_fred(t_list_int **stack_a, t_list_int **stack_b);
 void		bread_and_fred2(t_list_int **stack_a, t_list_int **stack_b);
 void		find_smallest_part_1(t_list_int **stack_a, t_list_int **stack_b);
-void		find_smallest_until_big(t_list_int **stack_a, t_list_int **stack_b);
+void		find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b);
 void		find_what_to_do_biggest(t_list_int **stack_a, t_list_int **stack_b);
 void		find_what_to_do_stack_b(t_list_int **stack);
 void		ft_failure(void);
-void		ft_is_dup(t_list_int **stack, int argc, char **argv);
+void		ft_is_dup(t_list_int **stack);
 void		ft_stack_construct(int argc, char **argv, t_list_int **stack);
 void		ft_stack_construct_int(int argc, int *argv, t_list_int **stack);
 void		push_a(t_list_int **stack_a, t_list_int **stack_b);
@@ -57,5 +57,7 @@ void		sort_five(t_list_int **stack_a, t_list_int **stack_b, int i,
 void		swap_a(t_list_int **stack);
 void		swap_b(t_list_int **stack);
 void		swap_s(t_list_int **stack_a, t_list_int **stack_b);
+void		the_cake_is_a_lie(t_list_int **stack_a, t_list_int **stack_b);
+void		the_cake_is_a_lie2(t_list_int **stack, int m);
 
 #endif

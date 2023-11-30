@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 23:08:33 by joana             #+#    #+#             */
-/*   Updated: 2023/11/15 22:23:10 by joana            ###   ########.fr       */
+/*   Updated: 2023/11/30 00:46:21 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_rotate(t_list_int **stack)
 		(iter_list_n_times(*stack, n - i))->content = temp;
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_rev_rotate(t_list_int **stack)
@@ -60,7 +60,7 @@ int	ft_rev_rotate(t_list_int **stack)
 		(iter_list_n_times(*stack, i - 1))->content = temp;
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_swap(t_list_int **stack)
@@ -70,7 +70,7 @@ int	ft_swap(t_list_int **stack)
 	temp = (*stack)->content;
 	(*stack)->content = (*stack)->next->content;
 	(*stack)->next->content = temp;
-	return (0);
+	return (1);
 }
 
 int	ft_push(t_list_int **sender, t_list_int **receiver)
@@ -81,7 +81,7 @@ int	ft_push(t_list_int **sender, t_list_int **receiver)
 	temp = (*sender)->next;
 	ft_lstdelone_int(*sender);
 	*sender = temp;
-	return (0);
+	return (1);
 }
 
 /*int main(void)

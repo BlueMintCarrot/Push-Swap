@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:20 by joana             #+#    #+#             */
-/*   Updated: 2023/11/28 22:06:11 by joanda-s         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:18:56 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,18 @@ int	main(int argc, char **argv)
 	else if (ft_is_int(argc, argv) == 0)
 		ft_failure();
 	ft_stack_construct(argc, argv, &stack_a);
-	ft_is_dup(&stack_a, argc, argv);
-	if (argc == 4 && !sorted_three(&stack_a))
+	ft_is_dup(&stack_a);
+	while (argc == 4 && !sorted_three(&stack_a))
 		sort_three(&stack_a);
-	else if (argc == 6 && is_ordered(&stack_a) == 1)
+	while (argc == 6 && is_ordered(&stack_a) == 1)
 		sort_five(&stack_a, &stack_b, 0, 0);
-	else if (is_ordered(&stack_a) == 1)
+	if (is_ordered(&stack_a) == 1)
 		find_what_to_do_biggest(&stack_a, &stack_b);
 	while (is_ordered(&stack_a) == 1)
 	{
 		find_smallest_part_2(&stack_a, &stack_b);
 		find_what_to_do_stack_b(&stack_b);
-		find_smallest_until_big(&stack_a, &stack_b);
+		find_smallest_until_big(&stack_a);
 	}
 	free (stack_a);
 	return (0);

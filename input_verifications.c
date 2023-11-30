@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_verifications.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joanda-s <joanda-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:32:24 by joana             #+#    #+#             */
-/*   Updated: 2023/11/28 15:42:30 by joanda-s         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:19:42 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,26 @@ int	ft_intcmp(int i1, int i2)
 		return (0);
 }
 
-void	ft_is_dup(t_list_int **stack, int argc, char **argv)
+void	ft_is_dup(t_list_int **stack)
 {
-	while ((*stack) != NULL && (*stack)->next != NULL)
+	t_list_int	*temp;
+	t_list_int	*temp2;
+
+	temp = (*stack)->next;
+	temp2 = (*stack);
+	while ((*stack) != NULL && temp != NULL)
 	{
-		if (ft_intcmp((*stack)->content, (*stack)->next->content) == 1)
+		if (ft_intcmp((*stack)->content, temp->content) == 1)
 			ft_failure();
-		else if ((*stack)->next->next == NULL)
+		else if (temp->next == NULL)
 		{
-			(*stack)->next = (*stack)->next->next;
+			temp = (*stack)->next->next;
 			(*stack) = (*stack)->next;
 		}
 		else
-			(*stack)->next = (*stack)->next->next;
+			temp = temp->next;
 	}
-	ft_stack_construct(argc, argv, stack);
+	(*stack) = temp2;
 }
 
 int	is_ordered(t_list_int **stack)
