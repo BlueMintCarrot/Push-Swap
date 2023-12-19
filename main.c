@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:20 by joana             #+#    #+#             */
-/*   Updated: 2023/11/30 01:18:56 by joana            ###   ########.fr       */
+/*   Updated: 2023/12/19 19:12:35 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,18 @@ int	main(int argc, char **argv)
 		sort_five(&stack_a, &stack_b, 0, 0);
 	if (is_ordered(&stack_a) == 1)
 		find_what_to_do_biggest(&stack_a, &stack_b);
-	while (is_ordered(&stack_a) == 1)
+	find_smallest_part_2(&stack_a, &stack_b);
+	while (is_ordered(&stack_a))
 	{
 		find_smallest_part_2(&stack_a, &stack_b);
-		find_what_to_do_stack_b(&stack_b);
-		find_smallest_until_big(&stack_a);
+//		find_what_to_do_stack_b(&stack_b);
+//		find_smallest_until_big(&stack_a);
+	}
+	while (stack_b)
+	{
+		find_smallest_part_2(&stack_a, &stack_b);
+//		find_what_to_do_stack_b(&stack_b);
+//		find_smallest_until_big(&stack_a);
 	}
 	free (stack_a);
 	return (0);

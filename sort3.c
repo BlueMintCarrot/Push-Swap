@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:52:55 by joana             #+#    #+#             */
-/*   Updated: 2023/11/30 00:37:59 by joana            ###   ########.fr       */
+/*   Updated: 2023/12/19 20:36:37 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_smallest_until_big(t_list_int **stack_a)
 	t_list_int	*temp;
 	t_list_int	*temp2;
 
-	m = 0;
+	m = 1;
 	n = (*stack_a)->content;
 	temp = (*stack_a);
 	temp2 = (*stack_a)->next;
@@ -27,10 +27,12 @@ int	find_smallest_until_big(t_list_int **stack_a)
 	{
 		while ((temp2->next != NULL && (*stack_a)->content < temp2->content))
 			temp2 = temp2->next;
-		if (temp2->next != NULL && (*stack_a)->content > temp2->content)
+		if (find_biggest(&temp) == 2)
+			break ;
+		if (temp2->next != NULL &&(*stack_a)->content > temp2->content)
 		{
-			(*stack_a) = (*stack_a)->next;
-			n = (*stack_a)->content;
+			(*stack_a) = temp2;
+			n = temp2->content;
             temp2 = temp2->next;
 			m++;
 		}
@@ -43,111 +45,15 @@ void	the_cake_is_a_lie(t_list_int **stack_a, t_list_int **stack_b)
 	int	n;
 	
 	n = find_smallest_until_big(stack_a);
-	if (!stack_b && (*stack_b)->content > ft_lstlast_int(*stack_a)->content
+	if ((*stack_b) && (*stack_b)->content > ft_lstlast_int(*stack_a)->content
 		&& (*stack_b)->content < n)
 	{
 		push_a(stack_a, stack_b);
+		find_what_to_do_stack_b(stack_b);
 		rotate_a(stack_a);
-//		find_smallest_until_big(stack_a);
-//		the_cake_is_a_lie(stack_a, stack_b);
+		the_cake_is_a_lie(stack_a, stack_b);
 	}
 }
-
-//void	find_smallest_until_big2(t_list_int **stack_a, t_list_int **stack_b)
-//{
-//	int	m;
-//	int	n;
-//	t_list_int	*temp;
-//	t_list_int	*temp2;
-//
-//	m = 0;
-//	n = (*stack_a)->content;
-//	temp = (*stack_a);
-//	temp2 = (*stack_a)->next;
-//	while (temp2->next != NULL && m < find_biggest(&temp))
-//	{
-//		while ((temp2->next != NULL && (*stack_a)->content < temp2->content))
-//			temp2 = temp2->next;
-//		if (temp2->next != NULL && (*stack_a)->content > temp2->content)
-//		{
-//			(*stack_a) = (*stack_a)->next;
-//			n = (*stack_a)->content;
-//            temp2 = temp2->next;
-//			m++;
-//		}
-//	}
-//	(*stack_a) = temp;
-//	if ((*stack_b)->content > ft_lstlast_int(*stack_a)->content
-//		&& (*stack_b)->content < n)
-//	{
-//		push_a(stack_a, stack_b);
-//		rotate_a(stack_a);
-//	}
-//}
-
-//int	stack_backup2(t_list_int **stack)
-//{
-//	int			*avbup;
-//	int			i;
-//	int			acbup;
-//	t_list_int	*temp;
-//
-//	i = 0;
-//	avbup = NULL;
-//	temp = (*stack);
-//	while(*stack)
-//	{
-//		(*stack) = (*stack)->next;
-//		i++;
-//	}
-//	(*stack) = temp;
-//	acbup = i;
-//	return (acbup);
-//}
-
-//int	*stack_backup(t_list_int **stack)
-//{
-//	size_t	i;
-//	size_t	m;
-//	int	*avbup;
-//	t_list_int	*temp;
-//	
-//	i = 0;
-//	m = ft_lstsize_int(*stack);
-//	avbup = (int *)malloc(m * sizeof(int));
-//	if (!avbup)
-//		return (NULL);
-//	temp = (*stack);
-//	while (i < m)
-//	{
-//		avbup[i] = (*stack)->content;
-//		i++;
-//		(*stack) = (*stack)->next;
-//	}
-//	(*stack) = temp;
-//	return (avbup);
-//}
-
-//void	ft_stack_construct_int(int argc, int *argv, t_list_int **stack)
-//{
-//	int			i;
-//	t_list_int	*node;
-//
-//	i = 1;
-//	if (!argv)
-//		ft_failure();
-//	while (i <= argc)
-//	{
-//		node = ft_lstnew_int(ft_llato(ft_itoa(argv[i])));
-//		if (!node)
-//			ft_failure();
-//		else if ((*stack) == NULL)
-//			*stack = node;
-//		else
-//			ft_lstadd_back_int(stack, node);
-//		i++;
-//	}
-//}
 
 int	find_biggest(t_list_int **stack)
 {

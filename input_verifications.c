@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:32:24 by joana             #+#    #+#             */
-/*   Updated: 2023/11/30 01:19:42 by joana            ###   ########.fr       */
+/*   Updated: 2023/12/19 19:18:17 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,20 @@ void	ft_is_dup(t_list_int **stack)
 
 int	is_ordered(t_list_int **stack)
 {
+	t_list_int	*temp;
+
+	temp = (*stack);
 	while ((*stack)->next != NULL
 		&& (*stack)->content < (*stack)->next->content)
 			*stack = (*stack)->next;
 	if ((*stack)->next == NULL)
+	{
+		(*stack) = temp;
 		return (0);
+	}
 	else
+	{
+		(*stack) = temp;
 		return (1);
+	}
 }

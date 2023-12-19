@@ -6,40 +6,11 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:18:05 by joana             #+#    #+#             */
-/*   Updated: 2023/11/30 00:40:33 by joana            ###   ########.fr       */
+/*   Updated: 2023/12/19 20:47:30 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//int	find_biggest(t_list_int **stack)
-//{
-//	t_list_int	*temp;
-//	int			m;
-//	int			acbup;
-//	int 		*avbup;
-//
-//	acbup = ft_lstiter_int(*stack);
-//	avbup = stack_backup(stack);
-//	m = 1;
-//	while (*stack)
-//	{
-//		temp = (*stack)->next;
-//		while ((*stack)->content > (*stack)->next->content
-//			&& (*stack)->next->next != NULL)
-//			(*stack)->next = (*stack)->next->next;
-//		if ((*stack)->content < (*stack)->next->content)
-//		{
-//			m++;
-//			*stack = temp;
-//		}
-//		else
-//			break ;
-//	}
-//	stack = NULL;
-//	ft_stack_construct_int(acbup, avbup, stack);
-//	return (m);
-//}
 
 void	find_what_to_do_biggest(t_list_int **stack_a, t_list_int **stack_b)
 {
@@ -51,6 +22,7 @@ void	find_what_to_do_biggest(t_list_int **stack_a, t_list_int **stack_b)
 		while (m != 1)
 		{
 			push_b(stack_a, stack_b);
+			find_what_to_do_stack_b(stack_b);
 			sort_three(stack_b);
 			m--;
 			if (m == 1)
@@ -96,55 +68,34 @@ void	find_smallest_part_1(t_list_int **stack_a, t_list_int **stack_b)
 	} 
 }
 
-//int	find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b)
-//{
-//	int	m;
-//
-//	m = 0;
-//	while ((*stack_a)->next != NULL || m++ <= 1)
-//	{
-//		while ((*stack_a)->next != NULL && (*stack_a)->content < (*stack_a)->next->content)
-//			(*stack_a)->next = (*stack_a)->next->next;
-//		if ((*stack_a)->content > (*stack_a)->next->content)
-//			(*stack_a) = (*stack_a)->next;
-//	}
-//	if (m <= 1)
-//	{
-//		if (((*stack_b)->content < (*stack_a)->content)
-//			&& ((*stack_b)->content < (*stack_a)->next->content))
-//		{
-//			push_b(stack_a, stack_b);
-//			sort_three(stack_b);
-//			rotate_a(stack_a);
-//		}
-//	}
-//	if (m == 2)
-//		find_smallest_part_1(stack_a, stack_b);
-//	return (m);
-//}
-
 void	find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b)
 {
 	int	n;
+	int	m;
 	
 	n = ft_lstlast_int(*stack_a)->content;
-	if (!stack_b && (*stack_a)->content > n && (*stack_a)->content < (*stack_a)->next->content && (*stack_a)->content < (*stack_b)->content)
+	m = find_smallest_until_big(stack_a);
+
+	if ((*stack_a)->content == m && (*stack_a)->content < (*stack_b)->content)
 		{
 			rotate_a(stack_a);
-			find_smallest_until_big(stack_a);
+			//find_smallest_until_big(stack_a);
 			the_cake_is_a_lie(stack_a, stack_b);
 		}
-	else if (!stack_b && (*stack_a)->next->content > n && (*stack_a)->next->content < (*stack_a)->content && (*stack_a)->content < (*stack_b)->content)
+	else if ((*stack_a)->next->content > n && (*stack_a)->next->content < (*stack_a)->content && (*stack_a)->content < (*stack_b)->content)
 	{
 		swap_a(stack_a);
 		rotate_a(stack_a);
-		find_smallest_until_big(stack_a);
+//		find_smallest_until_big(stack_a);
 		the_cake_is_a_lie(stack_a, stack_b);
 	}
-	else if (!stack_b && (*stack_b)->content > n && (*stack_b)->content < (*stack_a)->content && (*stack_b)->content < (*stack_a)->next->content)
+	else if ((*stack_b) && (*stack_b)->content > n && (*stack_b)->content < m)
 		find_smallest_part_1(stack_a, stack_b);
 	else
+	{
 		push_b(stack_a, stack_b);
+		find_what_to_do_stack_b(stack_b);
+	}
 }
 
 void	find_what_to_do_stack_b(t_list_int **stack)
@@ -155,8 +106,12 @@ void	find_what_to_do_stack_b(t_list_int **stack)
 
 	m = 0;
 	temp = (*stack);
-	temp2 = (*stack)->next;
-	while (!stack && temp2->next != NULL)
+	if ((*stack))
+		temp2 = (*stack)->next;
+	if (ft_lstsize_int(*stack) == 2)
+		if ((*stack)->content > (*stack)->next->content)
+			swap_b(stack);
+	while ((*stack) && temp2 != NULL && temp2->next != NULL)
 	{
 		while ((temp2->next != NULL && (*stack)->content < temp2->content))
 			temp2 = temp2->next;

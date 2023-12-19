@@ -1,0 +1,208 @@
+//int	find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b)
+//{
+//	int	m;
+//
+//	m = 0;
+//	while ((*stack_a)->next != NULL || m++ <= 1)
+//	{
+//		while ((*stack_a)->next != NULL && (*stack_a)->content < (*stack_a)->next->content)
+//			(*stack_a)->next = (*stack_a)->next->next;
+//		if ((*stack_a)->content > (*stack_a)->next->content)
+//			(*stack_a) = (*stack_a)->next;
+//	}
+//	if (m <= 1)
+//	{
+//		if (((*stack_b)->content < (*stack_a)->content)
+//			&& ((*stack_b)->content < (*stack_a)->next->content))
+//		{
+//			push_b(stack_a, stack_b);
+//			sort_three(stack_b);
+//			rotate_a(stack_a);
+//		}
+//	}
+//	if (m == 2)
+//		find_smallest_part_1(stack_a, stack_b);
+//	return (m);
+//}
+
+//int	find_biggest(t_list_int **stack)
+//{
+//	t_list_int	*temp;
+//	int			m;
+//	int			acbup;
+//	int 		*avbup;
+//
+//	acbup = ft_lstiter_int(*stack);
+//	avbup = stack_backup(stack);
+//	m = 1;
+//	while (*stack)
+//	{
+//		temp = (*stack)->next;
+//		while ((*stack)->content > (*stack)->next->content
+//			&& (*stack)->next->next != NULL)
+//			(*stack)->next = (*stack)->next->next;
+//		if ((*stack)->content < (*stack)->next->content)
+//		{
+//			m++;
+//			*stack = temp;
+//		}
+//		else
+//			break ;
+//	}
+//	stack = NULL;
+//	ft_stack_construct_int(acbup, avbup, stack);
+//	return (m);
+//}
+
+//void	find_smallest_until_big2(t_list_int **stack_a, t_list_int **stack_b)
+//{
+//	int	m;
+//	int	n;
+//	t_list_int	*temp;
+//	t_list_int	*temp2;
+//
+//	m = 0;
+//	n = (*stack_a)->content;
+//	temp = (*stack_a);
+//	temp2 = (*stack_a)->next;
+//	while (temp2->next != NULL && m < find_biggest(&temp))
+//	{
+//		while ((temp2->next != NULL && (*stack_a)->content < temp2->content))
+//			temp2 = temp2->next;
+//		if (temp2->next != NULL && (*stack_a)->content > temp2->content)
+//		{
+//			(*stack_a) = (*stack_a)->next;
+//			n = (*stack_a)->content;
+//            temp2 = temp2->next;
+//			m++;
+//		}
+//	}
+//	(*stack_a) = temp;
+//	if ((*stack_b)->content > ft_lstlast_int(*stack_a)->content
+//		&& (*stack_b)->content < n)
+//	{
+//		push_a(stack_a, stack_b);
+//		rotate_a(stack_a);
+//	}
+//}
+
+//int	stack_backup2(t_list_int **stack)
+//{
+//	int			*avbup;
+//	int			i;
+//	int			acbup;
+//	t_list_int	*temp;
+//
+//	i = 0;
+//	avbup = NULL;
+//	temp = (*stack);
+//	while(*stack)
+//	{
+//		(*stack) = (*stack)->next;
+//		i++;
+//	}
+//	(*stack) = temp;
+//	acbup = i;
+//	return (acbup);
+//}
+
+//int	*stack_backup(t_list_int **stack)
+//{
+//	size_t	i;
+//	size_t	m;
+//	int	*avbup;
+//	t_list_int	*temp;
+//	
+//	i = 0;
+//	m = ft_lstsize_int(*stack);
+//	avbup = (int *)malloc(m * sizeof(int));
+//	if (!avbup)
+//		return (NULL);
+//	temp = (*stack);
+//	while (i < m)
+//	{
+//		avbup[i] = (*stack)->content;
+//		i++;
+//		(*stack) = (*stack)->next;
+//	}
+//	(*stack) = temp;
+//	return (avbup);
+//}
+
+//void	ft_stack_construct_int(int argc, int *argv, t_list_int **stack)
+//{
+//	int			i;
+//	t_list_int	*node;
+//
+//	i = 1;
+//	if (!argv)
+//		ft_failure();
+//	while (i <= argc)
+//	{
+//		node = ft_lstnew_int(ft_llato(ft_itoa(argv[i])));
+//		if (!node)
+//			ft_failure();
+//		else if ((*stack) == NULL)
+//			*stack = node;
+//		else
+//			ft_lstadd_back_int(stack, node);
+//		i++;
+//	}
+//}
+
+void	find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b)
+{
+	int	n;
+	
+	n = ft_lstlast_int(*stack_a)->content;
+	if (stack_b && (*stack_a)->content > n && (*stack_a)->content < (*stack_a)->next->content && (*stack_a)->content < (*stack_b)->content)
+		{
+			rotate_a(stack_a);
+			find_smallest_until_big(stack_a);
+			the_cake_is_a_lie(stack_a, stack_b);
+		}
+	else if (stack_b && (*stack_a)->next->content > n && (*stack_a)->next->content < (*stack_a)->content && (*stack_a)->content < (*stack_b)->content)
+	{
+		swap_a(stack_a);
+		rotate_a(stack_a);
+		find_smallest_until_big(stack_a);
+		the_cake_is_a_lie(stack_a, stack_b);
+	}
+	else if (!stack_b && (*stack_b)->content > n && (*stack_b)->content < (*stack_a)->content && (*stack_b)->content < (*stack_a)->next->content)
+		find_smallest_part_1(stack_a, stack_b);
+	else
+	{
+		push_b(stack_a, stack_b);
+		find_what_to_do_stack_b(stack_b);
+	}
+}
+
+void	find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b)
+{
+	int	n;
+	int	m;
+	
+	n = ft_lstlast_int(*stack_a)->content;
+	m = find_smallest_until_big(stack_a);
+
+	if ((*stack_a)->content == m)
+		{
+			rotate_a(stack_a);
+			//find_smallest_until_big(stack_a);
+			the_cake_is_a_lie(stack_a, stack_b);
+		}
+	else if ((*stack_a)->next->content > n && (*stack_a)->next->content < (*stack_a)->content)
+	{
+		swap_a(stack_a);
+		rotate_a(stack_a);
+		find_smallest_until_big(stack_a);
+		the_cake_is_a_lie(stack_a, stack_b);
+	}
+	else if ((*stack_b) && (*stack_b)->content > n && (*stack_b)->content < m)
+		find_smallest_part_1(stack_a, stack_b);
+	else
+	{
+		push_b(stack_a, stack_b);
+		find_what_to_do_stack_b(stack_b);
+	}
+}
