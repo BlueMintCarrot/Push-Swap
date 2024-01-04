@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:41 by joana             #+#    #+#             */
-/*   Updated: 2023/12/18 17:48:27 by joana            ###   ########.fr       */
+/*   Updated: 2023/12/19 22:52:41 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 
 int			find_biggest(t_list_int **stack);
+int			find_biggest2(t_list_int **stack);
 int			find_smallest_until_big(t_list_int **stack_a);
 int			ft_intcmp(int i1, int i2);
 int			ft_is_int(int argc, char **argv);
