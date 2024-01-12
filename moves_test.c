@@ -146,7 +146,7 @@ int	ft_push(t_list_int **sender, t_list_int **receiver)
 	}
 
 	ft_rev_rotate(&full_list);
-	
+
 	printf("After RevRotate:\n");
 
 	printf("Full List 1:\n");
@@ -184,7 +184,7 @@ int	ft_push(t_list_int **sender, t_list_int **receiver)
 		printf("%d\n", current->content);
 		current = current->next;
 	}
-	
+
 
 	return (0);
 }*/

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_int.c                                   :+:      :+:    :+:   */
+/*   sort4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 22:06:21 by joanda-s          #+#    #+#             */
-/*   Updated: 2024/01/12 19:33:33 by joana            ###   ########.fr       */
+/*   Created: 2024/01/12 19:46:56 by joana             #+#    #+#             */
+/*   Updated: 2024/01/12 20:05:41 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list_int	*ft_lstlast_int(t_list_int *lst)
+void	are_you_still_there(t_list_int **stack_a, t_list_int **stack_b)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	push_a(stack_a, stack_b);
+	find_what_to_do_stack_b(stack_b);
+	rotate_a(stack_a);
+}
+
+void	companion_cube(t_list_int **stack_a, t_list_int **stack_b)
+{
+	push_b(stack_a, stack_b);
+	sort_three(stack_b);
+	find_what_to_do_stack_b(stack_b);
 }

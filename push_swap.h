@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:41 by joana             #+#    #+#             */
-/*   Updated: 2023/12/19 22:52:41 by joana            ###   ########.fr       */
+/*   Updated: 2024/01/12 20:09:35 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 int			find_biggest(t_list_int **stack);
-int			find_biggest2(t_list_int **stack);
+int			find_smallest(t_list_int **stack);
 int			find_smallest_until_big(t_list_int **stack_a);
 int			ft_intcmp(int i1, int i2);
 int			ft_is_int(int argc, char **argv);
@@ -34,8 +34,10 @@ int			*stack_backup(t_list_int **stack);
 int			stack_backup2(t_list_int **stack);
 long long	ft_llato(const char *str);
 t_list_int	*iter_list_n_times(t_list_int *stack, int n);
+void		are_you_still_there(t_list_int **stack_a, t_list_int **stack_b);
 void		bread_and_fred(t_list_int **stack_a, t_list_int **stack_b);
 void		bread_and_fred2(t_list_int **stack_a, t_list_int **stack_b);
+void		companion_cube(t_list_int **stack_a, t_list_int **stack_b);
 void		find_smallest_part_1(t_list_int **stack_a, t_list_int **stack_b);
 void		find_smallest_part_2(t_list_int **stack_a, t_list_int **stack_b);
 void		find_what_to_do_biggest(t_list_int **stack_a, t_list_int **stack_b);
@@ -55,6 +57,8 @@ void		reverse_rotate_r(t_list_int **stack_a, t_list_int **stack_b);
 void		sort_three(t_list_int **stack);
 void		sort_five(t_list_int **stack_a, t_list_int **stack_b, int i,
 				int lst_size);
+void		still_alive(t_list_int **stack_a, t_list_int **stack_b, int argc,
+				char **argv);
 void		swap_a(t_list_int **stack);
 void		swap_b(t_list_int **stack);
 void		swap_s(t_list_int **stack_a, t_list_int **stack_b);

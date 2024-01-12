@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:52:55 by joana             #+#    #+#             */
-/*   Updated: 2023/12/19 22:54:48 by joana            ###   ########.fr       */
+/*   Updated: 2024/01/12 19:32:28 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,29 @@
 
 int	find_smallest_until_big(t_list_int **stack_a)
 {
-	int	m;
-	int	n;
+	int			n;
+	int			max;
+	int			tiny;
 	t_list_int	*temp;
-	t_list_int	*temp2;
 
-	m = 1;
-	n = (*stack_a)->content;
+	n = 0;
+	max = find_biggest(stack_a);
+	tiny = 2147483647;
 	temp = (*stack_a);
-	temp2 = (*stack_a)->next;
-	while (temp2 && temp2->next != NULL && m < find_biggest(&temp))
+	while (n < max && temp)
 	{
-		while ((temp2->next != NULL && (*stack_a)->content < temp2->content))
-			temp2 = temp2->next;
-		if (find_biggest(&temp) == 2)
-			break ;
-		if (temp2->next != NULL &&(*stack_a)->content > temp2->content)
-		{
-			(*stack_a) = temp2;
-			n = temp2->content;
-            temp2 = temp2->next;
-			m++;
-		}
+		if (temp->content < tiny)
+			tiny = temp->content;
+		temp = temp->next;
+		n++;
 	}
-	(*stack_a) = temp;
-	return (n);
+	return (tiny);
 }
+
 void	the_cake_is_a_lie(t_list_int **stack_a, t_list_int **stack_b)
-{	
+{
 	int	n;
-	
+
 	n = find_smallest_until_big(stack_a);
 	if ((*stack_b) && (*stack_b)->content > ft_lstlast_int(*stack_a)->content
 		&& (*stack_b)->content < n)
@@ -53,7 +46,8 @@ void	the_cake_is_a_lie(t_list_int **stack_a, t_list_int **stack_b)
 		rotate_a(stack_a);
 		the_cake_is_a_lie(stack_a, stack_b);
 	}
-	else if ((*stack_b) && (*stack_b)->content < n && ft_lstlast_int(*stack_a)->content == find_biggest2(stack_a))
+	else if ((*stack_b) && (*stack_b)->content < n
+		&& ft_lstlast_int(*stack_a)->content == find_biggest(stack_a))
 	{
 		push_a(stack_a, stack_b);
 		find_what_to_do_stack_b(stack_b);
@@ -64,14 +58,13 @@ void	the_cake_is_a_lie(t_list_int **stack_a, t_list_int **stack_b)
 
 int	find_biggest(t_list_int **stack)
 {
-	int big;
-	int bigpos;
-	int pos;
-	t_list_int *temp;
-	
+	int			big;
+	int			bigpos;
+	int			pos;
+	t_list_int	*temp;
+
 	big = (*stack)->content;
 	bigpos = 1;
-
 	temp = (*stack)->next;
 	pos = 2;
 	while (temp != NULL)
@@ -87,32 +80,31 @@ int	find_biggest(t_list_int **stack)
 	return (bigpos);
 }
 
-int	find_biggest2(t_list_int **stack)
+int	find_smallest(t_list_int **stack)
 {
-	int big;
-	int bigpos;
-	int pos;
-	t_list_int *temp;
-	
-	big = (*stack)->content;
-	bigpos = 1;
+	int			small;
+	int			smallpos;
+	int			pos;
+	t_list_int	*temp;
 
+	small = (*stack)->content;
+	smallpos = 1;
 	temp = (*stack)->next;
 	pos = 2;
 	while (temp != NULL)
 	{
-		if (temp->content > big)
+		if (temp->content < small)
 		{
-			bigpos = pos;
-			big = temp->content;
+			smallpos = pos;
+			small = temp->content;
 		}
 		temp = temp->next;
 		pos++;
 	}
-	return (big);
+	return (smallpos);
 }
 //
-//void printNode(void *node) {
+// void printNode(void *node) {
 //	printf("%d\n", ((t_list_int *)node)->content);
 //}
 
@@ -190,7 +182,7 @@ int	find_biggest2(t_list_int **stack)
 		printf("%d\n", current2->content);
 		current2 = current2->next;
 	}
-	the_cake_is_a_lie(&full_list, &full_list2);	
+	the_cake_is_a_lie(&full_list, &full_list2);
 	//find_what_to_do_stack_b(&full_list);
 	//printf("%d\n\n", find_biggest(&full_list));
 	printf("Full List 1:\n");
@@ -200,5 +192,5 @@ int	find_biggest2(t_list_int **stack)
 		printf("%d\n", current->content);
 		current = current->next;
 	}
-	return 0;
+	return (0);
 }*/

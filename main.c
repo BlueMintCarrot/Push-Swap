@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 00:19:20 by joana             #+#    #+#             */
-/*   Updated: 2023/12/26 15:54:23 by joana            ###   ########.fr       */
+/*   Updated: 2024/01/12 20:12:43 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	ft_stack_construct(int argc, char **argv, t_list_int **stack)
 	}
 }
 
+void	still_alive(t_list_int **stack_a, t_list_int **stack_b, int argc,
+		char **argv)
+{
+	ft_stack_construct(argc, argv, stack_a);
+	ft_is_dup(stack_a);
+	while (argc == 4 && !sorted_three(stack_a))
+		sort_three(stack_a);
+	while (argc == 6 && is_ordered(stack_a) == 1)
+		sort_five(stack_a, stack_b, 0, 0);
+	if (is_ordered(stack_a) == 1)
+		find_what_to_do_biggest(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list_int	*stack_a;
@@ -71,30 +84,20 @@ int	main(int argc, char **argv)
 		return (0);
 	else if (ft_is_int(argc, argv) == 0)
 		ft_failure();
-	ft_stack_construct(argc, argv, &stack_a);
-	ft_is_dup(&stack_a);
-	while (argc == 4 && !sorted_three(&stack_a))
-		sort_three(&stack_a);
-	while (argc == 6 && is_ordered(&stack_a) == 1)
-		sort_five(&stack_a, &stack_b, 0, 0);
-	if (is_ordered(&stack_a) == 1)
-		find_what_to_do_biggest(&stack_a, &stack_b);
-	while (is_ordered(&stack_a) && stack_b)
+	still_alive(&stack_a, &stack_b, argc, argv);
+	while (1)
 	{
-		find_smallest_part_2(&stack_a, &stack_b);
-//		find_what_to_do_stack_b(&stack_b);
-//		find_smallest_until_big(&stack_a);
+		while (is_ordered(&stack_a) && !stack_b)
+			find_smallest_part_2(&stack_a, &stack_b);
+		while (is_ordered(&stack_a) && stack_b)
+			find_smallest_part_2(&stack_a, &stack_b);
+		while (stack_b)
+			find_smallest_part_2(&stack_a, &stack_b);
+		while (find_smallest(&stack_a) > 1)
+			rotate_a(&stack_a);
+		if (!is_ordered(&stack_a))
+			break ;
 	}
-	while (stack_b)
-	{
-		find_smallest_part_2(&stack_a, &stack_b);
-//		find_what_to_do_stack_b(&stack_b);
-//		find_smallest_until_big(&stack_a);
-//		if (!stack_b)
-//			rotate_a(&stack_a);
-	}
-	while (!stack_b && is_ordered(&stack_a))
-		rotate_a(&stack_a);
-	free (stack_a);
+	free(stack_a);
 	return (0);
 }

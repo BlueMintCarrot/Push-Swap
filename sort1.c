@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:35:21 by joana             #+#    #+#             */
-/*   Updated: 2023/12/18 17:48:28 by joana            ###   ########.fr       */
+/*   Updated: 2024/01/12 17:35:59 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	sort_three(t_list_int **stack)
 	}
 	else if (((*stack)->content > (*stack)->next->content)
 		&& ((*stack)->content < (*stack)->next->next->content))
-		swap_a(stack);
+		swap_b(stack);
 	else
-		rotate_a(stack);
+		rotate_b(stack);
 }
 
 void	bread_and_fred(t_list_int **stack_a, t_list_int **stack_b)

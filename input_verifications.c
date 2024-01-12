@@ -6,7 +6,7 @@
 /*   By: joana <joana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:32:24 by joana             #+#    #+#             */
-/*   Updated: 2023/12/26 16:11:29 by joana            ###   ########.fr       */
+/*   Updated: 2024/01/12 19:52:25 by joana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_failure(void)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(0);
 }
 
@@ -29,7 +29,7 @@ int	ft_is_int(int argc, char **argv)
 		if (!argv[i][0])
 			return (0);
 		else if ((argv[i][j] == '-' || argv[i][j] == '+')
-				&& ft_isdigit(argv[i][j + 1]) == 0)
+			&& ft_isdigit(argv[i][j + 1]) == 0)
 			return (0);
 		else
 		{
@@ -84,7 +84,7 @@ int	is_ordered(t_list_int **stack)
 	temp = (*stack);
 	while ((*stack)->next != NULL
 		&& (*stack)->content < (*stack)->next->content)
-			*stack = (*stack)->next;
+		*stack = (*stack)->next;
 	if ((*stack)->next == NULL)
 	{
 		(*stack) = temp;
